@@ -6,6 +6,13 @@ import do
 
 from argparse import ArgumentParser
 
+'''
+TODOs: 
+    * detect if paired or single end protocol
+    * get genome version: supported 37 and 38 for now
+    all those probably through http query to sra.cgi
+    wget -O SRP005601_metadata.csv 'http://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?save=efetch&db=sra&rettype=runinfo&term=SRP005601'
+'''
 
 def get_counts(fn_in, gtf, out):
     if fn_in.endswith("bam") or fn_in.endswith("sam"):
