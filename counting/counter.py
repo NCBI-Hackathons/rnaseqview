@@ -1,5 +1,6 @@
 import os
 import sys
+import logging
 
 import do
 
@@ -9,7 +10,7 @@ from argparse import ArgumentParser
 def get_counts(fn_in, gtf, out):
     if fn_in.endswith("bam") or fn_in.endswith("sam"):
         cmd = "samtools view {fn_in} | htseq-count -i gene_name - {gtf} > {out}"
-    do.run(cmd.format(**locals()))
+    do.run(cmd.format(**locals()), log_stdout=True)
 
 def get_position(gtf, out):
     seen = set()
@@ -22,6 +23,28 @@ def get_position(gtf, out):
                     print >>out_h, "%s\t%s\t%s\t%s" % (cols[0], gene_id[0], cols[3], cols[4])
                     seen.add(gene_id[0])
 
+def _get_gtf(version):
+    if version == "GRCh37":
+        url = "ftp://ftp.sanger.ac.uk/pub/gencode/Gencode_human/release_19/gencode.v19.annotation.gtf.gz"
+    elif version == "GRCh38":
+        url = "ftp://ftp.sanger.ac.uk/pub/gencode/Gencode_human/release_24/gencode.v24.annotation.gtf.gz"
+
+    file_out = "%s.gtf" % version
+    gz_out = "%s.gz" % file_out
+    cmd = "wget -O {gz_out} {url} && gunzip {gz_out} && sed -i 's/^chr//' {file_out}"
+    if not os.path.exists(file_out):
+        do.run(cmd.format(**locals()), log_stdout=True)
+    return file_out
+
+def _set_log():
+    logger = logging.getLogger()
+    logger.setLevel(logging.NOTSET)
+
+    logging_handler_out = logging.StreamHandler(sys.stdout)
+    logging_handler_out.setLevel(logging.INFO)
+    logger.addHandler(logging_handler_out)
+
+
 if __name__ == "__main__":
     description = ("Merge multiple files from the same sample to be compatible with bcbio BAM/FASTQ input files")
 
@@ -30,6 +53,8 @@ if __name__ == "__main__":
     parser.add_argument("--gtf", required=True, help="GTF file")
     parser.add_argument("--out", required=True, help="output dir")
     args = parser.parse_args()
-    get_counts(args.inp, args.gtf,"%s.tsv" % args.out)
-    get_position(args.gtf, "%s_pos.tsv" % args.out)
+    _set_log()
+    gtf = _get_gtf(args.gtf)
+    get_counts(args.inp, gtf,"%s.tsv" % args.out)
+    get_position(gtf, "%s_pos.tsv" % args.out)
 

@@ -59,7 +59,7 @@ def _do_run(cmd, checks, log_stdout=False):
         if line:
             debug_stdout.append(line)
             if log_stdout:
-                logger.debug(line.rstrip())
+                logger.info(line.rstrip())
             else:
                 logger.debug(line.rstrip())
         exitcode = s.poll()
