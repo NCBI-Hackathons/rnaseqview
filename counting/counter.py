@@ -5,7 +5,6 @@ import subprocess
 from contextlib import closing
 import xml.etree.ElementTree
 from collections import defaultdict
-import pandas as pd
 import HTSeq
 
 import do
@@ -14,6 +13,8 @@ import mapper
 from argparse import ArgumentParser
 
 '''
+HOWTO:
+ python counter.py --inp SRRXXXXX --out SRRXXXX_counts
 TODOs: 
     * detect if paired or single end protocol
 '''
@@ -21,6 +22,7 @@ TODOs:
 logger = logging.getLogger("Main")
 
 def _get_size(gtf):
+    """based on http://seqanswers.com/forums/showthread.php?t=4914"""
     gff_file = HTSeq.GFF_Reader( gtf, end_included=True )
 
     transcripts= {}
@@ -49,10 +51,13 @@ def _get_size(gtf):
 
 
 def get_counts(fn_in, gtf, out):
+    """Get counts using htseq-count script"""
     if fn_in.endswith("bam") or fn_in.endswith("sam"):
         cmd = "samtools sort -n -O sam {fn_in} -o /dev/stdout | awk '$7==\"=\"' | htseq-count -s no -i gene - {gtf} > {out}"
     elif fn_in.startswith("SRR"):
-        cmd = "sam-dump {fn_in} | samtools sort -n -O sam /dev/stdin -o /dev/stdout | awk '$7==\"=\"' | htseq-count -s no -i gene - {gtf} > {out}"
+        cmd = "sam-dump {fn_in} | samtools sort -n -O sam - -o /dev/stdout | awk '$7==\"=\"' | htseq-count -s no -i gene - {gtf} > {out}"
+    else:
+	raise ValueError("Sample or ID doesn't sound familiar %s" % fn_in)
 	
     logger.info(cmd.format(**locals()))
     if not os.path.exists(out):
@@ -60,6 +65,7 @@ def get_counts(fn_in, gtf, out):
     return out
 
 def normalize(counts, gtf):
+    """Divide total counts by largest transcript in gene"""
     size = _get_size(gtf)
     out = os.path.basename(counts).replace(".tsv", "_norm.tsv")
     with open(out, "w") as out_h:
@@ -72,6 +78,7 @@ def normalize(counts, gtf):
     return out
 
 def _get_gtf(version):
+    """Download GTF if it doesn't exists or return file if GTF given """
     file_out = "%s.gtf" % version
     gz_out = "%s.gz" % file_out
     if os.path.exists(version):
@@ -92,6 +99,7 @@ def _get_gtf(version):
     return file_out
 
 def _check_samples(sra_id):
+    """Get sample information to check assembly version that will means is aligned """
     if not sra_id.startswith("SRR") or sra_id.endswith("sam"): # need better way to check if sam file or not
 	return None
     cl = ("wget -q -O {sra_id} 'http://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?save=efetch&db=sra&rettype=sampleinfo&term={sra_id}'").format(**locals())
@@ -107,6 +115,7 @@ def _check_samples(sra_id):
     raise ValueError("Sample not aligned.")
 
 def _set_log():
+    """Set logging system to stdout """
     logger = logging.getLogger()
     logger.setLevel(logging.NOTSET)
 
@@ -116,7 +125,7 @@ def _set_log():
     return logger
 
 if __name__ == "__main__":
-    description = ("Merge multiple files from the same sample to be compatible with bcbio BAM/FASTQ input files")
+    description = ("Count gene expression from SRA accession number of SAM/BAM file.")
 
     parser = ArgumentParser(description="Merge fastq or bam files")
     parser.add_argument("--inp", required=True, help="SRA id or bam file")

@@ -1,0 +1,7 @@
+bcftools
+gffutils
+htseq
+ncurses
+numpy
+samtools
+scipy
