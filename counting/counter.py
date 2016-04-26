@@ -13,6 +13,11 @@ import mapper
 
 from argparse import ArgumentParser
 
+'''
+TODOs: 
+    * detect if paired or single end protocol
+'''
+
 logger = logging.getLogger("Main")
 
 def _get_size(gtf):
@@ -41,6 +46,7 @@ def _get_size(gtf):
             data[g] = d[w]
             break
     return data
+
 
 def get_counts(fn_in, gtf, out):
     if fn_in.endswith("bam") or fn_in.endswith("sam"):
@@ -133,5 +139,4 @@ if __name__ == "__main__":
     out_fn = get_counts(args.inp, gtf,"%s.tsv" % args.out)
     out_fn = normalize(out_fn, gtf)
     logger.info("Normalized file stored at %s" % out_fn)
-    # get_position(gtf, "%s_pos.tsv" % args.out)
 
