@@ -23,4 +23,10 @@ requirements:
   - tk=8.5.18=0
   - wheel=0.29.0=py27_0
   - zlib=1.2.8=0
-
+  - bcftools
+  - gffutils
+  - htseq
+  - ncurses
+  - numpy
+  - samtools
+  - scipy
