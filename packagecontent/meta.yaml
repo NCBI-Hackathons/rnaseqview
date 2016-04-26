@@ -1,0 +1,26 @@
+package:
+  name: rnaseqview
+  version: "0.1"
+
+build:
+  number: 0
+  skip: True # [osx]
+
+source:
+  git_url: https://github.com/NCBI-Hackathons/rnaseqview
+  git_rev: c03813954eec74c2d540942780d6ee898f823108 
+
+requirements:
+
+  run:
+  - django=1.9.5=py27_0
+  - openssl=1.0.2g=0
+  - pip=8.1.1=py27_1
+  - python=2.7.11=0
+  - readline=6.2=2
+  - setuptools=20.7.0=py27_0
+  - sqlite=3.9.2=0
+  - tk=8.5.18=0
+  - wheel=0.29.0=py27_0
+  - zlib=1.2.8=0
+
