@@ -20,11 +20,19 @@ TODO:
 '''
 
 import json
+import sys
 
 output = []
-
-input_file = "ncbi/ideogram_9606_GCF_000001305.14_550_V1"
-output_file = "native/ideogram_9606_GCF_000001405.26_550.js"
+#takes first argument as input, second as output, if non, then provides default path
+if len(sys.argv) == 2:
+        input_file = str(sys.argv[1:])
+	output_file = "native/ideogram_9606_GCF_000001405.26_550.js"
+elif len(sys.argv) == 3:
+	input_file = str(sys.argv[1:])
+	output_file = str(sys.argv[2:])
+else:
+	input_file = "ncbi/ideogram_9606_GCF_000001305.14_850_V1"
+	output_file = "native/ideogram_9606_GCF_000001405.26_550.js"
 
 rows = open(input_file, "r").readlines()[1:]
 for row in rows:
