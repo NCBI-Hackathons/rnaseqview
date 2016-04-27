@@ -49,7 +49,10 @@ and it will use the given GTF to create the count data. GTF needs to have `ID` a
 * `*_norm.tsv`: with counts/kb per gene (TPM)
 
 ## Formatter
-(TODO: Add steps here)
+
+Run the formatter.py script which converts the output from the Counter to JSON format. Example
+
+`formmater.py --type srr --lookup gene_lookup_GRCh37.tsv --inp SRR562645_counts.tsv --out SRR562645.json`
 
 # Visualization
 
