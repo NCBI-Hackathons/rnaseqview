@@ -67,14 +67,20 @@
       </label>
     </li>
     <li>
+      <label for="filter_gene-type_ncrna">
+        <input type="checkbox" id="filter_gene-type_ncrna">ncRNA</input>
+      <span class="count"></span>
+      </label>
+    </li>
+    <li>
       <label for="filter_gene-type_misc-rna">
         <input type="checkbox" id="filter_gene-type_misc-rna">misc_RNA</input>
       <span class="count"></span>
       </label>
     </li>
     <li>
-      <label for="filter_gene-type_mirna">
-        <input type="checkbox" id="filter_gene-type_mirna">miRNA</input>
+      <label for="filter_gene-type_precursor-rna">
+        <input type="checkbox" id="filter_gene-type_precursor-rna">precursor_RNA</input>
       <span class="count"></span>
       </label>
     </li>
@@ -85,8 +91,8 @@
       </label>
     </li>
     <li>
-      <label for="filter_gene-type_lncrna">
-        <input type="checkbox" id="filter_gene-type_lncrna">lncRNA</input>
+      <label for="filter_gene-type_other">
+        <input type="checkbox" id="filter_gene-type_other">other</input>
       <span class="count"></span>
       </label>
     </li>
@@ -123,10 +129,12 @@
       },
       "gene-type": {
         "mrna": 1,
-        "misc-rna": 2,
-        "mirna": 3,
-        "trna": 4,
-        "lncrna": 5
+        "ncrna": 2,
+        "misc-rna": 3,
+        "precursor-rna": 4,
+        "trna": 5,
+        "rrna": 6,
+        "other": 7
       }
     };
 
@@ -156,7 +164,7 @@
     chrHeight: 300,
     chrMargin: 10,
     showChromosomeLabels: true,
-    annotationsPath: "../data/annotations/all_human_genes.json",
+    annotationsPath: "../data/annotations/GSE40705.json",
     annotationsLayout: "histogram",
     histogramScaling: "relative",
     barWidth: 3,
