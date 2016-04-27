@@ -24,7 +24,6 @@ logger = logging.getLogger("Main")
 def _get_size(gtf):
     """based on http://seqanswers.com/forums/showthread.php?t=4914"""
     gff_file = HTSeq.GFF_Reader( gtf, end_included=True )
-
     transcripts= {}
     data = defaultdict(dict)
     gene = defaultdict()
@@ -80,11 +79,11 @@ def normalize(counts, gtf):
 def _get_gtf(version):
     """Download GTF if it doesn't exists or return file if GTF given """
     file_out = "%s.gtf" % version
-    gz_out = "%s.gz" % file_out
     if os.path.exists(version):
         return version
     if os.path.exists(file_out):
         return file_out
+
     if version == "GRCh37":
     	mapper.g37_map(file_out)
         # url = "ftp://ftp.sanger.ac.uk/pub/gencode/Gencode_human/release_19/gencode.v19.annotation.gtf.gz"
@@ -111,7 +110,7 @@ def _check_samples(sra_id):
     itemlist = xmldoc.getElementsByTagName('RUN')
     for s in itemlist:
 	if s.attributes["accession"].value == sra_id:
-           return s.attributes['assembly'].value
+           return str(s.attributes['assembly'].value)
     raise ValueError("Sample not aligned.")
 
 def _set_log():
@@ -141,6 +140,8 @@ if __name__ == "__main__":
     logger.info("Using this annotation %s" % gtf)
     if not args.gtf:
         gtf = _get_gtf(gtf)
+    elif os.path.exists(args.gtf):
+	gtf = args.gtf
     elif not os.path.exists(args.gtf):
 	logger.info("Assuming version instead of gtf file")
 	gtf = _get_gtf(args.gtf)
