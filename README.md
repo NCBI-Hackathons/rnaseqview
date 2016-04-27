@@ -55,3 +55,4 @@ and it will use the given GTF to create the count data. GTF needs to have `ID` a
 
 After running the steps above, you can plug the JSON data into Ideogram.js to view and filter RNA-Seq data on the entire human genome.
 
+![Visualization of a filtered genome-wide expression dataset for SRR562646](https://raw.githubusercontent.com/NCBI-Hackathons/rnaseqview/master/rnaseqview_SRR562646.png)
