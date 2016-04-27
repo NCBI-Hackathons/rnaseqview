@@ -52,7 +52,7 @@ and it will use the given GTF to create the count data. GTF needs to have `ID` a
 
 Run the formatter.py script which converts the output from the Counter to JSON format. Example
 
-`formatter.py --type srr --lookup gene_lookup_GRCh37.tsv --inp SRR562645_counts.tsv --out SRR562645.json`
+`formatter.py --type srr --lookup gene_lookup_GRCh37.tsv --inp SRR562645_counts_norm.tsv --out SRR562645.json`
 
 # Visualization
 
