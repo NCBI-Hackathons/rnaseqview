@@ -3,7 +3,7 @@
 
 The Genome-Wide RNA-Seq Viewer is a web application that enables users to visualize genome-wide expression data from NCBI's [Sequence Read Archive](https://www.ncbi.nlm.nih.gov/sra) (SRA) and [Gene Expression Omnibus](https://www.ncbi.nlm.nih.gov/geo) (GEO) databases.
 
-This repository primarily contains a prototype data pipeline, written mostly in Python.  It extracts aligned RNA-Seq data from SRA or GEO and transforms it into a format used by [Ideogram.js](https://github.com/eweitz/ideogram), a JavaScript library for chromosome visualization.  
+This repository contains a data pipeline written in Python.  It extracts aligned RNA-Seq data from SRA or GEO and transforms it into a format used by [Ideogram.js](https://github.com/eweitz/ideogram), a JavaScript library for chromosome visualization.  
 
 #How to
 Broadly, the pipeline does the following:
