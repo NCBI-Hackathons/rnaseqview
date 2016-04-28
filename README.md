@@ -1,19 +1,21 @@
 # rnaseqview
 *Visualize genome-wide RNA-Seq data*
 
-The Genome-Wide RNA-Seq Viewer is a web application that enables users to visualize genome-wide expression data from NCBI’s Sequence Read Archive (SRA) and Gene Expression Omnibus (GEO) databases.
+The Genome-Wide RNA-Seq Viewer is a web application that enables users to visualize genome-wide expression data from NCBI's [Sequence Read Archive](https://www.ncbi.nlm.nih.gov/sra) (SRA) and [Gene Expression Omnibus](https://www.ncbi.nlm.nih.gov/geo) (GEO) databases.
 
-This repository primarily contains a prototype data pipeline, written mostly in Python.  It extracts and transforms aligned RNA-Seq data from GEO or SRA into a format used by [Ideogram.js](https://github.com/eweitz/ideogram), a JavaScript library for chromosome visualization.  
+This repository primarily contains a prototype data pipeline, written mostly in Python.  It extracts aligned RNA-Seq data from SRA or GEO and transforms it into a format used by [Ideogram.js](https://github.com/eweitz/ideogram), a JavaScript library for chromosome visualization.  
 
 #How to
-Broadly, we need to:
-1) get data for an SRR accession from NCBI SRA, 2) count reads for each gene and normalize expression values to TPM units, 3) use the formatter script to get genomic coordinates for each gene and output
+Broadly, the pipeline does the following:
+1. Get data for an SRR accession from NCBI SRA
+2. Count reads for each gene and normalize expression values to TPM units
+3. Get genomic coordinates for each gene from the NCBI Homo sapiens Annotation Release
+4. Format genomic coordinates for each gene and output JSON used by Ideogram.js
 
 ## Counter
 ### Counter dependencies
 
-read `counter/deps.txt` to know the tools needed to run. 
-You can install all of them from the `bioconda` channel if you have an enviroment running.
+Read `counter/deps.txt` to know the tools needed to run. You can install all of them from the `bioconda` channel if you have an enviroment running.
 
 An easy way to install conda:
 
