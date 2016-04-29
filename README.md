@@ -3,7 +3,7 @@
 
 The Genome-Wide RNA-Seq Viewer is a web application that enables users to visualize genome-wide expression data from NCBI's [Sequence Read Archive](https://www.ncbi.nlm.nih.gov/sra) (SRA) and [Gene Expression Omnibus](https://www.ncbi.nlm.nih.gov/geo) (GEO) databases.
 
-This repository contains a data pipeline written in Python.  It extracts aligned RNA-Seq data from SRA or GEO and transforms it into a format used by [Ideogram.js](https://github.com/eweitz/ideogram), a JavaScript library for chromosome visualization.  
+This repository contains a data pipeline written in Python.  It extracts aligned RNA-Seq data from SRA or GEO and transforms it into a format used by [Ideogram.js](https://github.com/eweitz/ideogram), a JavaScript library for chromosome visualization.  The minimal front-end allows users to see the distribution of genes across the entire human genome, and filter them by expression levels in the SRA/GEO sample or gene type.
 
 #How to
 Broadly, the pipeline does the following:
@@ -11,7 +11,7 @@ Broadly, the pipeline does the following:
 1. Get data for an SRR accession from NCBI SRA
 2. Count reads for each gene and normalize expression values to TPM units
 3. Get genomic coordinates for each gene from the NCBI Homo sapiens Annotation Release
-4. Format genomic coordinates for each gene and output JSON used by Ideogram.js
+4. Format coordinates and TPM values for each gene into JSON used by Ideogram.js
 
 ## Counter
 ### Counter dependencies
