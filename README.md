@@ -59,6 +59,6 @@ Run the formatter.py script which converts the output from the Counter to JSON f
 
 # Visualization
 
-After running the steps above, you can plug the JSON data into Ideogram.js to view and filter RNA-Seq data on the entire human genome.
+After running the steps above, you can [plug the JSON data into Ideogram.js](https://github.com/NCBI-Hackathons/rnaseqview/blob/master/SRR562646.html#L159) to view and filter RNA-Seq data on the entire human genome.
 
 ![Visualization of a filtered genome-wide expression dataset for SRR562646](https://raw.githubusercontent.com/NCBI-Hackathons/rnaseqview/master/rnaseqview_SRR562646.png)
