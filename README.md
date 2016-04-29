@@ -7,6 +7,7 @@ This repository contains a data pipeline written in Python.  It extracts aligned
 
 #How to
 Broadly, the pipeline does the following:
+
 1. Get data for an SRR accession from NCBI SRA
 2. Count reads for each gene and normalize expression values to TPM units
 3. Get genomic coordinates for each gene from the NCBI Homo sapiens Annotation Release
