@@ -10,7 +10,7 @@ Broadly, the pipeline does the following:
 
 1. Get data for an [SRR accession](http://www.ncbi.nlm.nih.gov/books/NBK49167/#SRA_Analysis_BK.sec2) from NCBI SRA
 2. Count reads for each gene and normalize expression values to [TPM units](http://www.ncbi.nlm.nih.gov/pubmed/22872506)
-3. Get genomic coordinates for each gene from the [NCBI Homo sapiens Annotation Release](ftp://ftp.ncbi.nih.gov/genomes/Homo_sapiens/ARCHIVE/ANNOTATION_RELEASE.105/)
+3. Get genomic coordinates for each gene from the [NCBI Homo sapiens Annotation Release](http://ftp.ncbi.nih.gov/genomes/Homo_sapiens/ARCHIVE/ANNOTATION_RELEASE.105/)
 4. Format coordinates and TPM values for each gene into JSON used by Ideogram.js
 
 ## Counter
