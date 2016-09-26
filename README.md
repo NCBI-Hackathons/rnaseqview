@@ -1,6 +1,8 @@
 # rnaseqview
 *Visualize genome-wide RNA-Seq data*
 
+[![DOI](https://zenodo.org/badge/56255701.svg)](https://zenodo.org/badge/latestdoi/56255701)
+
 The Genome-Wide RNA-Seq Viewer is a web application that enables users to visualize genome-wide expression data from NCBI's [Sequence Read Archive](https://www.ncbi.nlm.nih.gov/sra) (SRA) and [Gene Expression Omnibus](https://www.ncbi.nlm.nih.gov/geo) (GEO) databases.
 
 This repository contains a data pipeline written in Python.  It extracts aligned RNA-Seq data from SRA or GEO and transforms it into a format used by [Ideogram.js](https://github.com/eweitz/ideogram), a JavaScript library for chromosome visualization.  The minimal front-end allows users to see the distribution of genes across the entire human genome, and filter them by expression levels in the SRA/GEO sample or gene type.
