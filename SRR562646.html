@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <title>SRR562646, DSN-lite | Genome-Wide RNA-Seq Viewer</title>
-  <link type="text/css" rel="stylesheet" href="../src/css/ideogram.css"/>
+  <link type="text/css" rel="stylesheet" href="ideogram/src/css/ideogram.css"/>
   <link type="text/css" rel="stylesheet" href="css/rnaseqview.css"/>
-  <script type="text/javascript" src="../src/js/d3.min.js"></script>
-  <script type="text/javascript" src="../src/js/ideogram.js"></script>
-  <script type="text/javascript" src="../src/js/crossfilter.min.js"></script>
-  <script type="text/javascript" src="../src/js/ideogram.filter.js"></script>
+  <script type="text/javascript" src="ideogram/src/js/d3.min.js"></script>
+  <script type="text/javascript" src="ideogram/src/js/ideogram.js"></script>
+  <script type="text/javascript" src="ideogram/src/js/crossfilter.min.js"></script>
+  <script type="text/javascript" src="ideogram/src/js/ideogram.filter.js"></script>
 </head>
 <body>
   <h1>SRR562646, DSN-lite | Genome-Wide RNA-Seq Viewer</h1>
@@ -161,8 +161,9 @@
     organism: "human",
     assembly: "GRCh37",    
     chrHeight: 300,
-    annotationsPath: "../data/annotations/SRR562646.json",
+    annotationsPath: "data/SRR562646.json",
     annotationsLayout: "histogram",
+    bandDir: "ideogram/data/bands/",
     onLoad: onIdeogramLoad
   };
 

@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <title>GSE40705, Pancreas | Genome-Wide RNA-Seq Viewer</title>
-  <link type="text/css" rel="stylesheet" href="../src/css/ideogram.css"/>
+  <link type="text/css" rel="stylesheet" href="ideogram/src/css/ideogram.css"/>
   <link type="text/css" rel="stylesheet" href="css/rnaseqview.css"/>
-  <script type="text/javascript" src="../src/js/d3.min.js"></script>
-  <script type="text/javascript" src="../src/js/ideogram.js"></script>
-  <script type="text/javascript" src="../src/js/crossfilter.min.js"></script>
-  <script type="text/javascript" src="../src/js/ideogram.filter.js"></script>
+  <script type="text/javascript" src="ideogram/src/js/d3.min.js"></script>
+  <script type="text/javascript" src="ideogram/src/js/ideogram.js"></script>
+  <script type="text/javascript" src="ideogram/src/js/crossfilter.min.js"></script>
+  <script type="text/javascript" src="ideogram/src/js/ideogram.filter.js"></script>
 </head>
 <body>
   <h1>GSE40705, Pancreas | Genome-Wide RNA-Seq Viewer</h1>
@@ -164,11 +164,12 @@
     chrHeight: 300,
     chrMargin: 10,
     showChromosomeLabels: true,
-    annotationsPath: "../data/annotations/GSE40705.json",
+    annotationsPath: "data/GSE40705.json",
     annotationsLayout: "histogram",
     histogramScaling: "relative",
     barWidth: 3,
     orientation: "vertical",
+    bandDir: "ideogram/data/bands/",
     onLoad: onIdeogramLoad
   };
 
